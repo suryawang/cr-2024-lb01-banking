@@ -98,16 +98,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 
 		setupToolBar();
 
-		// Creating the StatusBar of Program.
-		author = new JLabel(" " + "BankSystem [Pvt] Limited.", Label.LEFT);
-		author.setForeground(Color.black);
-		author.setToolTipText("Program's Title");
-		welcome = new JLabel("Welcome Today is " + d + " ", JLabel.RIGHT);
-		welcome.setForeground(Color.black);
-		welcome.setToolTipText("Welcoming the User & System Current Date");
-		statusBar.setLayout(new BorderLayout());
-		statusBar.add(author, BorderLayout.WEST);
-		statusBar.add(welcome, BorderLayout.EAST);
+		setupStatusBar();
 
 		// For Making the Dragging Speed of Internal Frames Faster.
 		desktop.putClientProperty("JDesktopPane.dragMode", "outline");
@@ -120,6 +111,19 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		// Showing The Main Form of Application.
 		setVisible(true);
 
+	}
+
+	private void setupStatusBar() {
+		// Creating the StatusBar of Program.
+		author = new JLabel(" " + "BankSystem [Pvt] Limited.", Label.LEFT);
+		author.setForeground(Color.black);
+		author.setToolTipText("Program's Title");
+		welcome = new JLabel("Welcome Today is " + d + " ", JLabel.RIGHT);
+		welcome.setForeground(Color.black);
+		welcome.setToolTipText("Welcoming the User & System Current Date");
+		statusBar.setLayout(new BorderLayout());
+		statusBar.add(author, BorderLayout.WEST);
+		statusBar.add(welcome, BorderLayout.EAST);
 	}
 
 	private void setupToolBar() {
