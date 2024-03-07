@@ -85,14 +85,8 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		
 		setSize (700, 550);
 
-		//Closing Code of Main Window.
-		addWindowListener (new WindowAdapter () {
-			public void windowClosing (WindowEvent we) {
-				quitApp ();
-			}
-		}
-		);
-
+		setupListener();
+		
 		//Setting the Location of Application on Screen.
 		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width  - getWidth()) / 2,
 			(Toolkit.getDefaultToolkit().getScreenSize().height - getHeight()) / 2);
@@ -268,17 +262,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		popMenu.add (find);
 		popMenu.add (all);
 
-		//Following Procedure display the PopupMenu of Program.
-		addMouseListener (new MouseAdapter () {
-			public void mousePressed (MouseEvent me) { checkMouseTrigger (me); }
-			public void mouseReleased (MouseEvent me) { checkMouseTrigger (me); }
-			private void checkMouseTrigger (MouseEvent me) {
-				if (me.isPopupTrigger ())
-					popMenu.show (me.getComponent (), me.getX (), me.getY ());
-			}
-		}
-		);
-		
+
 		//Creating the ToolBar's Buttons of Program.
 		btnNew = new JButton (new ImageIcon (ClassLoader.getSystemResource("Images/NotePad.gif")));
 		btnNew.setToolTipText ("Create New Account");
@@ -343,6 +327,24 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		//Showing The Main Form of Application.
 		setVisible (true);
 
+	}
+
+	private void setupListener() {
+		addWindowListener (new WindowAdapter () {
+			public void windowClosing (WindowEvent we) {
+				quitApp ();
+			}
+		}
+		);
+		addMouseListener (new MouseAdapter () {
+			public void mousePressed (MouseEvent me) { checkMouseTrigger (me); }
+			public void mouseReleased (MouseEvent me) { checkMouseTrigger (me); }
+			private void checkMouseTrigger (MouseEvent me) {
+				if (me.isPopupTrigger ())
+					popMenu.show (me.getComponent (), me.getX (), me.getY ());
+			}
+		}
+		);
 	}
 
 	private void setupMenuBar() {
