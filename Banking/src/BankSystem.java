@@ -83,19 +83,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 
 		setupListener();
 
-		//Creating the MenuBar Items.
-		mnuFile = new JMenu ("File");
-		mnuFile.setMnemonic ((int)'F');
-		mnuEdit = new JMenu ("Edit");
-		mnuEdit.setMnemonic ((int)'E');
-		mnuView = new JMenu ("View");
-		mnuView.setMnemonic ((int)'V');
-		mnuOpt = new JMenu ("Options");
-		mnuOpt.setMnemonic ((int)'O');
-		mnuWin = new JMenu ("Window");
-		mnuWin.setMnemonic ((int)'W');
-		mnuHelp = new JMenu ("Help");
-		mnuHelp.setMnemonic ((int)'H');
+		setupMenuBarItems();
 
 		//Creating the MenuItems of Program.
 		//MenuItems for FileMenu.
@@ -319,6 +307,22 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		//Showing The Main Form of Application.
 		setVisible (true);
 
+	}
+
+	private void setupMenuBarItems() {
+		//Creating the MenuBar Items.
+		mnuFile = new JMenu ("File");
+		mnuFile.setMnemonic ((int)'F');
+		mnuEdit = new JMenu ("Edit");
+		mnuEdit.setMnemonic ((int)'E');
+		mnuView = new JMenu ("View");
+		mnuView.setMnemonic ((int)'V');
+		mnuOpt = new JMenu ("Options");
+		mnuOpt.setMnemonic ((int)'O');
+		mnuWin = new JMenu ("Window");
+		mnuWin.setMnemonic ((int)'W');
+		mnuHelp = new JMenu ("Help");
+		mnuHelp.setMnemonic ((int)'H');
 	}
 
 	private void setupUI() {
