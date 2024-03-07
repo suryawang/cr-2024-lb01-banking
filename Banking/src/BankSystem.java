@@ -96,6 +96,33 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 
 		setupPopUpMenu();
 
+		setupToolBar();
+
+		// Creating the StatusBar of Program.
+		author = new JLabel(" " + "BankSystem [Pvt] Limited.", Label.LEFT);
+		author.setForeground(Color.black);
+		author.setToolTipText("Program's Title");
+		welcome = new JLabel("Welcome Today is " + d + " ", JLabel.RIGHT);
+		welcome.setForeground(Color.black);
+		welcome.setToolTipText("Welcoming the User & System Current Date");
+		statusBar.setLayout(new BorderLayout());
+		statusBar.add(author, BorderLayout.WEST);
+		statusBar.add(welcome, BorderLayout.EAST);
+
+		// For Making the Dragging Speed of Internal Frames Faster.
+		desktop.putClientProperty("JDesktopPane.dragMode", "outline");
+
+		// Setting the Contents of Programs.
+		getContentPane().add(toolBar, BorderLayout.NORTH);
+		getContentPane().add(desktop, BorderLayout.CENTER);
+		getContentPane().add(statusBar, BorderLayout.SOUTH);
+
+		// Showing The Main Form of Application.
+		setVisible(true);
+
+	}
+
+	private void setupToolBar() {
 		// Creating the ToolBar's Buttons of Program.
 		btnNew = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/NotePad.gif")));
 		btnNew.setToolTipText("Create New Account");
@@ -137,29 +164,6 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		toolBar.addSeparator();
 		toolBar.add(btnHelp);
 		toolBar.add(btnKey);
-
-		// Creating the StatusBar of Program.
-		author = new JLabel(" " + "BankSystem [Pvt] Limited.", Label.LEFT);
-		author.setForeground(Color.black);
-		author.setToolTipText("Program's Title");
-		welcome = new JLabel("Welcome Today is " + d + " ", JLabel.RIGHT);
-		welcome.setForeground(Color.black);
-		welcome.setToolTipText("Welcoming the User & System Current Date");
-		statusBar.setLayout(new BorderLayout());
-		statusBar.add(author, BorderLayout.WEST);
-		statusBar.add(welcome, BorderLayout.EAST);
-
-		// For Making the Dragging Speed of Internal Frames Faster.
-		desktop.putClientProperty("JDesktopPane.dragMode", "outline");
-
-		// Setting the Contents of Programs.
-		getContentPane().add(toolBar, BorderLayout.NORTH);
-		getContentPane().add(desktop, BorderLayout.CENTER);
-		getContentPane().add(statusBar, BorderLayout.SOUTH);
-
-		// Showing The Main Form of Application.
-		setVisible(true);
-
 	}
 
 	private void setupPopUpMenu() {
