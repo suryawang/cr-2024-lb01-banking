@@ -89,28 +89,24 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		setupOptionMenu();
 		setupWindowMenu();
 		setupHelpMenu();
-
 		addMenuItemsToMenu();
-
 		setupMenuBar();
-
 		setupPopUpMenu();
-
 		setupToolBar();
-
 		setupStatusBar();
 
 		// For Making the Dragging Speed of Internal Frames Faster.
 		desktop.putClientProperty("JDesktopPane.dragMode", "outline");
+		setupContentLayout();
+		// Showing The Main Form of Application.
+		setVisible(true);
+	}
 
+	private void setupContentLayout() {
 		// Setting the Contents of Programs.
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		getContentPane().add(desktop, BorderLayout.CENTER);
 		getContentPane().add(statusBar, BorderLayout.SOUTH);
-
-		// Showing The Main Form of Application.
-		setVisible(true);
-
 	}
 
 	private void setupStatusBar() {
