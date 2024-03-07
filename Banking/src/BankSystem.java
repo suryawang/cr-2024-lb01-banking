@@ -94,31 +94,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 
 		setupMenuBar();
 
-		// MenuItems for PopupMenu.
-		open = new JMenuItem("Open New Account", new ImageIcon(ClassLoader.getSystemResource("Images/Open.gif")));
-		open.addActionListener(this);
-		report = new JMenuItem("Print BankSystem Report",
-				new ImageIcon(ClassLoader.getSystemResource("Images/New.gif")));
-		report.addActionListener(this);
-		dep = new JMenuItem("Deposit Money");
-		dep.addActionListener(this);
-		with = new JMenuItem("Withdraw Money");
-		with.addActionListener(this);
-		del = new JMenuItem("Delete Customer", new ImageIcon(ClassLoader.getSystemResource("Images/Delete.gif")));
-		del.addActionListener(this);
-		find = new JMenuItem("Search Customer", new ImageIcon(ClassLoader.getSystemResource("Images/find.gif")));
-		find.addActionListener(this);
-		all = new JMenuItem("View All Customer", new ImageIcon(ClassLoader.getSystemResource("Images/refresh.gif")));
-		all.addActionListener(this);
-
-		// Adding Menues to PopupMenu.
-		popMenu.add(open);
-		popMenu.add(report);
-		popMenu.add(dep);
-		popMenu.add(with);
-		popMenu.add(del);
-		popMenu.add(find);
-		popMenu.add(all);
+		setupPopUpMenu();
 
 		// Creating the ToolBar's Buttons of Program.
 		btnNew = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/NotePad.gif")));
@@ -184,6 +160,34 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		// Showing The Main Form of Application.
 		setVisible(true);
 
+	}
+
+	private void setupPopUpMenu() {
+		// MenuItems for PopupMenu.
+		open = new JMenuItem("Open New Account", new ImageIcon(ClassLoader.getSystemResource("Images/Open.gif")));
+		open.addActionListener(this);
+		report = new JMenuItem("Print BankSystem Report",
+				new ImageIcon(ClassLoader.getSystemResource("Images/New.gif")));
+		report.addActionListener(this);
+		dep = new JMenuItem("Deposit Money");
+		dep.addActionListener(this);
+		with = new JMenuItem("Withdraw Money");
+		with.addActionListener(this);
+		del = new JMenuItem("Delete Customer", new ImageIcon(ClassLoader.getSystemResource("Images/Delete.gif")));
+		del.addActionListener(this);
+		find = new JMenuItem("Search Customer", new ImageIcon(ClassLoader.getSystemResource("Images/find.gif")));
+		find.addActionListener(this);
+		all = new JMenuItem("View All Customer", new ImageIcon(ClassLoader.getSystemResource("Images/refresh.gif")));
+		all.addActionListener(this);
+
+		// Adding Menues to PopupMenu.
+		popMenu.add(open);
+		popMenu.add(report);
+		popMenu.add(dep);
+		popMenu.add(with);
+		popMenu.add(del);
+		popMenu.add(find);
+		popMenu.add(all);
 	}
 
 	private void addMenuItemsToMenu() {
