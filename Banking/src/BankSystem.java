@@ -79,17 +79,9 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 
 		UIManager.addPropertyChangeListener (new UISwitchListener ((JComponent)getRootPane()));
 
-		//Setting the Main Window of Program.
-		//setIconImage (getToolkit().getImage ("Images/Bank.gif")));
-		setIconImage (new ImageIcon(ClassLoader.getSystemResource ("Images/Bank.gif")).getImage());
-		
-		setSize (700, 550);
+		setupUI();
 
 		setupListener();
-		
-		//Setting the Location of Application on Screen.
-		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width  - getWidth()) / 2,
-			(Toolkit.getDefaultToolkit().getScreenSize().height - getHeight()) / 2);
 
 		//Creating the MenuBar Items.
 		mnuFile = new JMenu ("File");
@@ -327,6 +319,13 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		//Showing The Main Form of Application.
 		setVisible (true);
 
+	}
+
+	private void setupUI() {
+		setIconImage (new ImageIcon(ClassLoader.getSystemResource ("Images/Bank.gif")).getImage());
+		setSize (700, 550);
+		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width  - getWidth()) / 2,
+			(Toolkit.getDefaultToolkit().getScreenSize().height - getHeight()) / 2);
 	}
 
 	private void setupListener() {
