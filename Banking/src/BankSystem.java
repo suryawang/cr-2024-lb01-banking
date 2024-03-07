@@ -90,46 +90,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		setupWindowMenu();
 		setupHelpMenu();
 
-		// Adding MenuItems to Menu.
-
-		// File Menu Items.
-		mnuFile.add(addNew);
-		mnuFile.addSeparator();
-		mnuFile.add(printRec);
-		mnuFile.addSeparator();
-		mnuFile.add(end);
-
-		// Edit Menu Items.
-		mnuEdit.add(deposit);
-		mnuEdit.add(withdraw);
-		mnuEdit.addSeparator();
-		mnuEdit.add(delRec);
-		mnuEdit.addSeparator();
-		mnuEdit.add(search);
-		mnuEdit.add(searchName);
-
-		// View Menu Items.
-		mnuView.add(oneByOne);
-		mnuView.addSeparator();
-		mnuView.add(allCustomer);
-
-		// Options Menu Items.
-		mnuOpt.add(change);
-		mnuOpt.addSeparator();
-		mnuOpt.add(style);
-		mnuOpt.addSeparator();
-		mnuOpt.add(theme);
-
-		// Window Menu Items.
-		mnuWin.add(close);
-		mnuWin.add(closeAll);
-
-		// Help Menu Items.
-		mnuHelp.add(content);
-		mnuHelp.addSeparator();
-		mnuHelp.add(keyHelp);
-		mnuHelp.addSeparator();
-		mnuHelp.add(about);
+		addMenuItemsToMenu();
 
 		setupMenuBar();
 
@@ -223,6 +184,49 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		// Showing The Main Form of Application.
 		setVisible(true);
 
+	}
+
+	private void addMenuItemsToMenu() {
+		// Adding MenuItems to Menu.
+
+		// File Menu Items.
+		mnuFile.add(addNew);
+		mnuFile.addSeparator();
+		mnuFile.add(printRec);
+		mnuFile.addSeparator();
+		mnuFile.add(end);
+
+		// Edit Menu Items.
+		mnuEdit.add(deposit);
+		mnuEdit.add(withdraw);
+		mnuEdit.addSeparator();
+		mnuEdit.add(delRec);
+		mnuEdit.addSeparator();
+		mnuEdit.add(search);
+		mnuEdit.add(searchName);
+
+		// View Menu Items.
+		mnuView.add(oneByOne);
+		mnuView.addSeparator();
+		mnuView.add(allCustomer);
+
+		// Options Menu Items.
+		mnuOpt.add(change);
+		mnuOpt.addSeparator();
+		mnuOpt.add(style);
+		mnuOpt.addSeparator();
+		mnuOpt.add(theme);
+
+		// Window Menu Items.
+		mnuWin.add(close);
+		mnuWin.add(closeAll);
+
+		// Help Menu Items.
+		mnuHelp.add(content);
+		mnuHelp.addSeparator();
+		mnuHelp.add(keyHelp);
+		mnuHelp.addSeparator();
+		mnuHelp.add(about);
 	}
 
 	private void setupHelpMenu() {
