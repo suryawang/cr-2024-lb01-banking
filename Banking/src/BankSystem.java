@@ -65,7 +65,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 	private int total = 0;
 
 	// String Type Array use to Load Records From File.
-	private String records[][] = new String[500][6];
+	private Record records[] = new Record[500];
 
 	// Variable for Reading the BankSystem Records File.
 	private FileInputStream fis;
@@ -629,9 +629,10 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 			dis = new DataInputStream(fis);
 			// Loop to Populate the Array.
 			while (true) {
-				for (int i = 0; i < 6; i++) {
-					records[rows][i] = dis.readUTF();
-				}
+				var r = new String[6];
+				for (int i = 0; i < 6; i++)
+					r[i] = dis.readUTF();
+				records[rows] = Record.fromDb(r);
 				rows++;
 			}
 		} catch (Exception ex) {
@@ -660,7 +661,7 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 
 		boolean found = false;
 		for (int x = 0; x < total; x++) {
-			if (records[x][0].equals(rec)) {
+			if (records[x].getAccountNo().equals(rec)) {
 				found = true;
 				printRecord(makeRecordPrint(x));
 				break;
@@ -681,11 +682,11 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		String data;
 		String data0 = "               BankSystem [Pvt] Limited.               \n"; // Page Title.
 		String data1 = "               Customer Balance Report.              \n\n"; // Page Header.
-		String data2 = "  Account No.:       " + records[rec][0] + "\n";
-		String data3 = "  Customer Name:     " + records[rec][1] + "\n";
-		String data4 = "  Last Transaction:  " + records[rec][2] + ", " + records[rec][3] + ", " + records[rec][4]
+		String data2 = "  Account No.:       " + records[rec].getAccountNo() + "\n";
+		String data3 = "  Customer Name:     " + records[rec].getCustomerName() + "\n";
+		String data4 = "  Last Transaction:  " + records[rec].getMonth() + ", " + records[rec].getDay() + ", " + records[rec].getYear()
 				+ "\n";
-		String data5 = "  Current Balance:   " + records[rec][5] + "\n\n";
+		String data5 = "  Current Balance:   " + records[rec].getBalance() + "\n\n";
 		String data6 = "          Copyright � 2003 Muhammad Wasif Javed.\n"; // Page Footer.
 		String sep0 = " -----------------------------------------------------------\n";
 		String sep1 = " -----------------------------------------------------------\n";
