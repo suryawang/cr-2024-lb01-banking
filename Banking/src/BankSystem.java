@@ -122,32 +122,23 @@ public class BankSystem extends JFrame implements ActionListener, ItemListener {
 		statusBar.add(welcome, BorderLayout.EAST);
 	}
 
+	private JButton createButton(String file, String text) {
+		var button = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/" + file)));
+		button.setToolTipText(text);
+		button.addActionListener(this);
+		return button;
+	}
+
 	private void setupToolBar() {
 		// Creating the ToolBar's Buttons of Program.
-		btnNew = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/NotePad.gif")));
-		btnNew.setToolTipText("Create New Account");
-		btnNew.addActionListener(this);
-		btnDep = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/ImationDisk.gif")));
-		btnDep.setToolTipText("Deposit Money");
-		btnDep.addActionListener(this);
-		btnWith = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/SuperDisk.gif")));
-		btnWith.setToolTipText("Withdraw Money");
-		btnWith.addActionListener(this);
-		btnRec = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/Paproll.gif")));
-		btnRec.setToolTipText("Print Customer Balance");
-		btnRec.addActionListener(this);
-		btnDel = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/Toaster.gif")));
-		btnDel.setToolTipText("Delete Customer");
-		btnDel.addActionListener(this);
-		btnSrch = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/Search.gif")));
-		btnSrch.setToolTipText("Search Customer");
-		btnSrch.addActionListener(this);
-		btnHelp = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/Help.gif")));
-		btnHelp.setToolTipText("Help on Bank System");
-		btnHelp.addActionListener(this);
-		btnKey = new JButton(new ImageIcon(ClassLoader.getSystemResource("Images/Keys.gif")));
-		btnKey.setToolTipText("Shortcut Keys of BankSystem");
-		btnKey.addActionListener(this);
+		btnNew = createButton("NotePad.gif", "Create New Account");
+		btnDep = createButton("ImationDisk.gif", "Deposit Money"); 
+		btnWith = createButton("SuperDisk.gif", "Withdraw Money");
+		btnRec = createButton("Paproll.gif", "Print Customer Balance");
+		btnDel = createButton("Toaster.gif", "Delete Customer");
+		btnSrch = createButton("Search.gif", "Search Customer");
+		btnHelp = createButton("Help.gif", "Help on Bank System");
+		btnKey = createButton("Keys.gif", "Shortcut Keys of BankSystem");
 
 		// Creating the ToolBar of Program.
 		toolBar = new JToolBar();
