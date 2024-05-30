@@ -37,6 +37,13 @@ public class CustomerRecord {
 		this.date = date;
 	}
 
+	public void setDate(String date) {
+		try {
+			this.date = new SimpleDateFormat("MMMM dd yyyy").parse(date);
+		} catch (Exception ex) {
+		}
+	}
+
 	public int getDeposit() {
 		return deposit;
 	}

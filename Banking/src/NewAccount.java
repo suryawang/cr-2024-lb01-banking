@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import model.CustomerRecord;
 import repository.CustomerRepository;
+import rules.ActiveDate;
 
 import java.io.*;
 import java.text.ParseException;
@@ -71,19 +72,10 @@ public class NewAccount extends JInternalFrame implements ActionListener {
 		});
 
 		// Creating Date Option.
-		String Months[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
-				"October", "November", "December" };
-		cboMonth = new JComboBox(Months);
+		cboMonth = new JComboBox();
 		cboDay = new JComboBox();
 		cboYear = new JComboBox();
-		for (int i = 1; i <= 31; i++) {
-			String days = "" + i;
-			cboDay.addItem(days);
-		}
-		for (int i = 2000; i <= 2015; i++) {
-			String years = "" + i;
-			cboYear.addItem(years);
-		}
+		ActiveDate.fillOption(cboMonth, cboDay, cboYear);
 
 		// Aligning The Date Option Controls.
 		cboMonth.setBounds(105, 90, 92, 25);
@@ -162,7 +154,7 @@ public class NewAccount extends JInternalFrame implements ActionListener {
 
 	void save() {
 		if (CustomerRepository.getInstance()
-				.Add(new CustomerRecord(txtNo.getText(), txtName.getText(),
+				.add(new CustomerRecord(txtNo.getText(), txtName.getText(),
 						cboMonth.getSelectedItem() + " " + cboDay.getSelectedItem() + " " + cboYear.getSelectedItem(),
 						Integer.parseInt(txtDeposit.getText())))) {
 			JOptionPane.showMessageDialog(this, "The Record has been Saved Successfully", "BankSystem - Record Saved",

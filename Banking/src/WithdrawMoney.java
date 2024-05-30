@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import rules.ActiveDate;
+
 import java.io.*;
 
 public class WithdrawMoney extends JInternalFrame implements ActionListener {
@@ -90,21 +93,11 @@ public class WithdrawMoney extends JInternalFrame implements ActionListener {
   		}
 		);
 
-		//Creating Date Option.
-		String Months[] = {"January", "February", "March", "April", "May", "June",
-			"July", "August", "September", "October", "November", "December"};
-		cboMonth = new JComboBox (Months);
-		cboDay = new JComboBox ();
-		cboYear = new JComboBox ();
-		for (int i = 1; i <= 31; i++) {
-			String days = "" + i;
-			cboDay.addItem (days);
-		}
-		for (int i = 2000; i <= 2015; i++) {
-			String years = "" + i;
-			cboYear.addItem (years);
-		}
-
+		cboMonth = new JComboBox();
+		cboDay = new JComboBox();
+		cboYear = new JComboBox();
+		ActiveDate.fillOption(cboMonth, cboDay, cboYear);
+		
 		//Aligning The Date Option Controls.
 		cboMonth.setBounds (105, 90, 92, 25);
 		cboDay.setBounds (202, 90, 43, 25);

@@ -50,7 +50,7 @@ public class CustomerRepository {
 		}
 	}
 
-	public boolean Add(CustomerRecord item) {
+	public boolean add(CustomerRecord item) {
 		try {
 			var fos = new FileOutputStream("Bank.dat", true);
 			var dos = new DataOutputStream(fos);
@@ -63,6 +63,33 @@ public class CustomerRepository {
 			dos.writeUTF(item.getDeposit() + "");
 
 			records.add(item);
+			dos.close();
+			fos.close();
+			return true;
+		} catch (IOException ioe) {
+			return false;
+		}
+	}
+
+	public boolean remove(CustomerRecord item) {
+		if (records.remove(item))
+			return save();
+		return false;
+	}
+
+	public boolean save() {
+		try {
+			var fos = new FileOutputStream("Bank.dat");
+			var dos = new DataOutputStream(fos);
+			for (var item : records) {
+				dos.writeUTF(item.getAccount_no());
+				dos.writeUTF(item.getName());
+				dos.writeUTF(item.getMonth());
+				dos.writeUTF(item.getDay());
+				dos.writeUTF(item.getYear());
+				dos.writeUTF(item.getDeposit() + "");
+			}
+
 			dos.close();
 			fos.close();
 			return true;
