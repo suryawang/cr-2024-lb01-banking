@@ -25,7 +25,7 @@ public class BankHelp extends JInternalFrame {
 
 class HtmlPane extends JScrollPane implements HyperlinkListener {
 
-	JEditorPane html;
+	private JEditorPane html;
 
 	public HtmlPane(String filename) {
 
