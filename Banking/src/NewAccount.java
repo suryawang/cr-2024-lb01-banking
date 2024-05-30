@@ -3,6 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import model.CustomerRecord;
+import repository.CustomerRepository;
 
 import java.io.*;
 import java.text.ParseException;
@@ -17,19 +18,6 @@ public class NewAccount extends JInternalFrame implements ActionListener {
 	private JTextField txtNo, txtName, txtDeposit;
 	private JComboBox cboMonth, cboDay, cboYear;
 	private JButton btnSave, btnCancel;
-
-	private int count = 0;
-	private int rows = 0;
-	private int total = 0;
-
-	// String Type Array use to Load Records From File.
-	private Vector<CustomerRecord> records = new Vector<CustomerRecord>();
-
-	// String Type Array use to Save Records into File.
-	private String saves[][] = new String[500][6];
-
-	private FileInputStream fis;
-	private DataInputStream dis;
 
 	NewAccount() {
 
@@ -151,7 +139,6 @@ public class NewAccount extends JInternalFrame implements ActionListener {
 						JOptionPane.PLAIN_MESSAGE);
 				txtDeposit.requestFocus();
 			} else {
-				populateArray(); // Load All Existing Records in Memory.
 				findRec(); // Finding if Account No. Already Exist or Not.
 			}
 		}
@@ -163,88 +150,27 @@ public class NewAccount extends JInternalFrame implements ActionListener {
 
 	}
 
-	static Date fromString(String month, String day, String year) throws ParseException {
-		var s = new SimpleDateFormat("MMMM dd yyyy");
-		return s.parse(month + " " + day + " " + year);
-	}
-
-	// Function use to load all Records from File when Application Execute.
-	void populateArray() {
-		records = new Vector<CustomerRecord>();
-		try {
-			fis = new FileInputStream("Bank.dat");
-			dis = new DataInputStream(fis);
-			// Loop to Populate the Array.
-			var d = new String[6];
-			while (true) {
-				for (int i = 0; i < 6; i++) {
-					d[i] = dis.readUTF();
-				}
-				records.add(new CustomerRecord(d[0], d[1], fromString(d[2], d[3], d[4]), Integer.parseInt(d[5])));
-			}
-		} catch (Exception ex) {
-			total = rows;
-			if (total == 0) {
-			} else {
-				try {
-					dis.close();
-					fis.close();
-				} catch (Exception exp) {
-				}
-			}
-		}
-
-	}
-
-	// Function use to Find Record by Matching the Contents of Records Array with ID
-	// TextBox.
 	void findRec() {
-		for (var it : records)
-			if (it.getAccount_no().equals(txtNo.getText())) {
-				JOptionPane.showMessageDialog(this, "Account No. " + txtNo.getText() + " is Already Exist.",
-						"BankSystem - WrongNo", JOptionPane.PLAIN_MESSAGE);
-				txtClear();
-				return;
-			}
-		saveArray();
+		if (CustomerRepository.getInstance().find(txtNo.getText()) != null) {
+			JOptionPane.showMessageDialog(this, "Account No. " + txtNo.getText() + " is Already Exist.",
+					"BankSystem - WrongNo", JOptionPane.PLAIN_MESSAGE);
+			txtClear();
+			return;
+		}
+		save();
 	}
 
-	// Function use to add new Element to Array.
-	void saveArray() {
-
-		saves[count][0] = txtNo.getText();
-		saves[count][1] = txtName.getText();
-		saves[count][2] = "" + cboMonth.getSelectedItem();
-		saves[count][3] = "" + cboDay.getSelectedItem();
-		saves[count][4] = "" + cboYear.getSelectedItem();
-		saves[count][5] = txtDeposit.getText();
-		saveFile(); // Save This Array to File.
-		count++;
-
-	}
-
-	// Function use to Save new Record to the File.
-	void saveFile() {
-
-		try {
-			FileOutputStream fos = new FileOutputStream("Bank.dat", true);
-			DataOutputStream dos = new DataOutputStream(fos);
-			dos.writeUTF(saves[count][0]);
-			dos.writeUTF(saves[count][1]);
-			dos.writeUTF(saves[count][2]);
-			dos.writeUTF(saves[count][3]);
-			dos.writeUTF(saves[count][4]);
-			dos.writeUTF(saves[count][5]);
+	void save() {
+		if (CustomerRepository.getInstance()
+				.Add(new CustomerRecord(txtNo.getText(), txtName.getText(),
+						cboMonth.getSelectedItem() + " " + cboDay.getSelectedItem() + " " + cboYear.getSelectedItem(),
+						Integer.parseInt(txtDeposit.getText())))) {
 			JOptionPane.showMessageDialog(this, "The Record has been Saved Successfully", "BankSystem - Record Saved",
 					JOptionPane.PLAIN_MESSAGE);
 			txtClear();
-			dos.close();
-			fos.close();
-		} catch (IOException ioe) {
+		} else
 			JOptionPane.showMessageDialog(this, "There are Some Problem with File", "BankSystem - Problem",
 					JOptionPane.PLAIN_MESSAGE);
-		}
-
 	}
 
 	// Function use to Clear all TextFields of Window.

@@ -10,10 +10,23 @@ public class CustomerRecord {
 	private int deposit;
 
 	public CustomerRecord(String account_no, String name, Date date, int deposit) {
+		this(account_no, name, deposit);
+		this.date = date;
+	}
+
+	private CustomerRecord(String account_no, String name, int deposit) {
 		this.account_no = account_no;
 		this.name = name;
-		this.date = date;
 		this.deposit = deposit;
+	}
+
+	public CustomerRecord(String account_no, String name, String date, int deposit) {
+		this(account_no, name, deposit);
+		try {
+			setDate(new SimpleDateFormat("MMMM dd yyyy").parse(date));
+		} catch (Exception ex) {
+			setDate(new Date());
+		}
 	}
 
 	public Date getDate() {
